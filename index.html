@@ -2,23 +2,24 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portal Update - Tema Natal Ungu</title>
-  <meta name="description" content="Portal update bertema Natal dengan warna ungu gelap. Banner, menu, dan grid kartu rekomendasi." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PORTAL UNGU — Tema Natal</title>
+  <meta name="description" content="Portal ungu tema Natal — update harian, info, dan live chat." />
 
   <style>
     :root{
-      --bg0:#0b0613;
-      --bg1:#130826;
+      --bg0:#0a0614;
+      --bg1:#120a26;
       --card: rgba(255,255,255,.06);
-      --line: rgba(255,255,255,.12);
-      --text:#f4f1ff;
-      --muted: rgba(244,241,255,.75);
-      --accent:#b86bff;
-      --accent2:#ffcf6b;
-      --good:#36e38a;
-      --shadow: 0 18px 45px rgba(0,0,0,.55);
-      --radius: 18px;
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.12);
+      --text:#f3efff;
+      --muted: rgba(243,239,255,.72);
+      --accent:#b980ff;
+      --accent2:#7c3aed;
+      --gold:#f7c964;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --r:18px;
     }
 
     *{box-sizing:border-box}
@@ -26,311 +27,308 @@
     body{
       margin:0;
       color:var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
       background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(184,107,255,.18), transparent 55%),
-        radial-gradient(900px 500px at 90% 20%, rgba(255,207,107,.12), transparent 55%),
-        radial-gradient(900px 600px at 60% 95%, rgba(54,227,138,.10), transparent 55%),
+        radial-gradient(900px 420px at 20% 20%, rgba(185,128,255,.18), transparent 60%),
+        radial-gradient(900px 420px at 80% 10%, rgba(247,201,100,.14), transparent 55%),
+        radial-gradient(900px 520px at 50% 85%, rgba(124,58,237,.14), transparent 60%),
         linear-gradient(180deg, var(--bg1), var(--bg0));
       overflow-x:hidden;
     }
 
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:1120px; margin:0 auto; padding:18px 18px 60px}
-
-    /* Snow */
-    .snow{
-      position:fixed; inset:0; pointer-events:none; z-index:1;
-      opacity:.75;
+    /* --- subtle snow --- */
+    .snow{position:fixed; inset:0; pointer-events:none; z-index:0}
+    .snow::before, .snow::after{
+      content:"";
+      position:absolute; inset:-200px;
       background-image:
-        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.9) 50%, transparent 51%),
-        radial-gradient(2px 2px at 140px 80px, rgba(255,255,255,.7) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 70px 140px, rgba(255,255,255,.6) 50%, transparent 51%),
-        radial-gradient(1.8px 1.8px at 220px 160px, rgba(255,255,255,.8) 50%, transparent 51%),
-        radial-gradient(1.2px 1.2px at 280px 40px, rgba(255,255,255,.6) 50%, transparent 51%);
-      background-size: 320px 220px;
-      animation: snowFall 16s linear infinite;
-      filter: drop-shadow(0 0 6px rgba(184,107,255,.20));
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.85), transparent 40%),
+        radial-gradient(1px 1px at 90px 120px, rgba(255,255,255,.7), transparent 45%),
+        radial-gradient(1.5px 1.5px at 160px 80px, rgba(255,255,255,.8), transparent 45%),
+        radial-gradient(1px 1px at 220px 200px, rgba(255,255,255,.6), transparent 45%);
+      background-size: 260px 260px;
+      opacity:.35;
+      animation: snowFall 18s linear infinite;
+      filter: blur(.2px);
     }
+    .snow::after{opacity:.22; animation-duration: 28s}
     @keyframes snowFall{
-      from{transform: translateY(-220px)}
-      to{transform: translateY(220px)}
+      from{transform: translateY(-120px)}
+      to{transform: translateY(420px)}
     }
 
-    /* Header */
+    a{color:inherit; text-decoration:none}
+    .wrap{position:relative; z-index:1; max-width:1160px; margin:0 auto; padding:18px 18px 60px}
+
+    /* --- topbar pills --- */
+    .topPills{
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+      margin:10px 0 14px;
+    }
+    .pill{
+      padding:8px 12px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      font-size:12px;
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+    }
+
+    /* --- header --- */
     header{
       position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(19,8,38,.82), rgba(11,6,19,.55));
-      border-bottom:1px solid var(--line);
+      background: rgba(10,6,20,.45);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(14px);
     }
-    .topbar{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:12px 18px;
+    .headIn{
+      max-width:1160px; margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
     .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width:220px;
+      display:flex; align-items:center; gap:12px; min-width:220px;
     }
     .logo{
-      width:40px; height:40px; border-radius:14px;
+      width:38px; height:38px; border-radius: 12px;
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,0) 45%),
-        radial-gradient(circle at 60% 70%, rgba(184,107,255,.95), rgba(184,107,255,0) 60%),
-        linear-gradient(135deg, rgba(184,107,255,.65), rgba(54,227,138,.25));
-      box-shadow: 0 0 18px rgba(184,107,255,.35);
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 45%),
+        radial-gradient(circle at 30% 30%, rgba(185,128,255,.9), rgba(124,58,237,.6));
+      box-shadow: 0 0 30px rgba(185,128,255,.25);
     }
-    .brand h1{font-size:14px; margin:0; letter-spacing:.6px}
-    .brand small{display:block; margin-top:2px; color:var(--muted); font-weight:600}
+    .brand h1{margin:0; font-size:14px; letter-spacing:.5px}
+    .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
 
-    nav{
-      display:flex; align-items:center; gap:8px;
-      flex-wrap:wrap;
-    }
-    .navbtn{
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
+    nav{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center}
+    .navBtn{
+      padding:10px 14px;
+      border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
-      color:var(--muted);
+      border-radius: 999px;
       font-weight:700;
-      font-size:13px;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      font-size:12px;
+      color: var(--muted);
+      transition:.18s ease;
     }
-    .navbtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
-    .navbtn.active{
+    .navBtn.active, .navBtn:hover{
       color:var(--text);
-      border-color: rgba(184,107,255,.55);
-      background: linear-gradient(135deg, rgba(184,107,255,.25), rgba(255,255,255,.06));
-      box-shadow: 0 0 0 4px rgba(184,107,255,.10);
+      border-color: rgba(185,128,255,.45);
+      box-shadow: 0 0 0 4px rgba(185,128,255,.10);
+      background: rgba(185,128,255,.10);
     }
 
     .right{
-      display:flex; align-items:center; gap:10px;
-      min-width:220px; justify-content:flex-end;
+      display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width:220px;
     }
-    .pill{
-      padding:8px 10px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-weight:700; font-size:12px;
+    .tag{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:12px;
+      white-space:nowrap;
     }
     .login{
-      padding:9px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,207,107,.55);
-      background: linear-gradient(135deg, rgba(255,207,107,.20), rgba(255,255,255,.03));
-      font-weight:900; font-size:12px;
+      padding:10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(247,201,100,.55);
+      background: rgba(247,201,100,.08);
+      font-weight:800;
+      font-size:12px;
+      color: var(--text);
     }
 
-    /* Cards */
+    /* --- cards --- */
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
-      border:1px solid var(--line);
-      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: var(--card);
+      border-radius: var(--r);
       box-shadow: var(--shadow);
-      position:relative;
-      z-index:2; /* above snow */
+      overflow:hidden;
     }
 
-    /* Info bar */
     .infoBar{
-      margin-top:18px;
-      padding:12px 14px;
-      display:flex; gap:10px; align-items:center;
-      color:var(--muted);
+      margin-top:16px;
+      padding:14px 16px;
+      display:flex; align-items:center; gap:10px;
     }
     .dot{
       width:10px; height:10px; border-radius:999px;
-      background: var(--good);
-      box-shadow: 0 0 0 5px rgba(54,227,138,.12), 0 0 16px rgba(54,227,138,.25);
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,.14);
       flex:0 0 auto;
     }
+    .infoBar b{color: var(--accent)}
 
-    /* Banner hero with LEFT image + RIGHT text */
-    .hero{ margin-top:14px; overflow:hidden; }
-    .heroInner{
+    /* --- hero row (banner left, text right) --- */
+    .heroRow{
+      margin-top:14px;
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:16px;
-      padding:16px;
+      grid-template-columns: 1.35fr 1fr;
+      gap:14px;
       align-items:stretch;
     }
-    .heroImg{
-      border-radius: 16px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(900px 260px at 20% 30%, rgba(184,107,255,.22), transparent 55%),
-        radial-gradient(650px 260px at 85% 45%, rgba(255,207,107,.14), transparent 55%),
-        linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      min-height: 240px;
+    .bannerBox{
+      padding:16px;
+      min-height:220px;
       position:relative;
+      background:
+        radial-gradient(900px 280px at 10% 10%, rgba(185,128,255,.22), transparent 55%),
+        radial-gradient(900px 280px at 90% 20%, rgba(247,201,100,.18), transparent 60%),
+        rgba(255,255,255,.04);
     }
-    .heroImg::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.35));
-    }
-    .heroImg .label{
-      position:absolute; left:14px; top:14px;
-      padding:7px 10px;
+    .bannerTag{
+      display:inline-flex;
+      padding:6px 10px;
       border-radius:999px;
-      background: rgba(184,107,255,.22);
-      border:1px solid rgba(184,107,255,.55);
-      font-weight:900;
+      border:1px solid rgba(185,128,255,.45);
+      background: rgba(185,128,255,.12);
+      font-weight:800;
       font-size:12px;
-      z-index:1;
+      margin-bottom:12px;
     }
-    .heroImg .hint{
-      position:absolute; left:14px; right:14px; bottom:12px;
-      color: rgba(244,241,255,.85);
+    .bannerInner{
+      height:160px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+    }
+    .bannerInner::after{
+      content:"";
+      position:absolute; inset:-60px;
+      background:
+        radial-gradient(400px 200px at 25% 35%, rgba(185,128,255,.25), transparent 60%),
+        radial-gradient(300px 220px at 75% 45%, rgba(247,201,100,.22), transparent 60%);
+      filter: blur(2px);
+      transform: rotate(6deg);
+    }
+    .bannerHint{
+      margin-top:10px;
+      color: var(--muted);
       font-size:12px;
-      z-index:1;
-      line-height:1.35;
     }
 
-    .heroText{
-      padding:12px 12px 8px;
+    .bocoranBox{
+      padding:16px;
       display:flex;
       flex-direction:column;
-      justify-content:center;
       gap:10px;
+      background: rgba(255,255,255,.05);
     }
-    .heroText h2{ margin:0; font-size:18px; letter-spacing:.2px; }
-    .heroText p{ margin:0; color:var(--muted); line-height:1.55 }
-    .list{ margin:6px 0 0; padding-left:16px; color: rgba(244,241,255,.85); line-height:1.6; }
-    .ctas{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .bocoranBox h2{margin:0; font-size:18px}
+    .bocoranBox p{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
+    .list{margin:6px 0 0; padding-left:18px; color:var(--text); font-size:13px}
+    .list li{margin:6px 0}
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
     .cta{
       display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      font-weight:900;
-      font-size:13px;
-      transition: transform .08s ease, filter .2s ease;
+      padding:10px 14px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      font-weight:800;
+      font-size:12px;
+      color: var(--text);
     }
-    .cta:hover{transform: translateY(-1px); filter: brightness(1.05)}
     .cta.primary{
-      border-color: rgba(184,107,255,.55);
-      background: linear-gradient(135deg, rgba(184,107,255,.35), rgba(255,255,255,.06));
+      border-color: rgba(185,128,255,.55);
+      background: rgba(185,128,255,.14);
     }
-    .cta.alt{
-      border-color: rgba(255,207,107,.55);
-      background: linear-gradient(135deg, rgba(255,207,107,.20), rgba(255,255,255,.06));
-      color: #1b102a;
+    .cta.gold{
+      border-color: rgba(247,201,100,.6);
+      background: rgba(247,201,100,.10);
     }
 
-    /* Section Head */
+    /* --- grid section (recommendations) --- */
     .sectionHead{
       margin-top:18px;
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:10px;
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
     }
     .sectionHead h3{margin:0; font-size:16px}
-    .sectionHead span{color:var(--muted); font-size:12px; font-weight:700}
+    .sectionHead .note{color:var(--muted); font-size:12px}
 
-    /* Tabs bar */
     .tabs{
       margin-top:10px;
-      display:flex; align-items:center; gap:8px;
-      overflow:auto;
-      padding-bottom:6px;
-      position:relative;
-      z-index:2;
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
     }
     .tab{
-      flex: 0 0 auto;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-weight:900;
+      padding:9px 12px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight:800;
       font-size:12px;
       cursor:pointer;
       user-select:none;
     }
     .tab.active{
-      color:var(--text);
-      border-color: rgba(54,227,138,.55);
-      background: linear-gradient(135deg, rgba(54,227,138,.18), rgba(255,255,255,.04));
+      color: var(--text);
+      border-color: rgba(34,197,94,.55);
+      background: rgba(34,197,94,.10);
+      box-shadow: 0 0 0 4px rgba(34,197,94,.10);
     }
 
-    /* Grid cards */
     .grid{
-      margin-top:10px;
+      margin-top:12px;
       display:grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(6, minmax(0,1fr));
       gap:12px;
-      padding:12px;
     }
-    .gcard{
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
+    .item{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
-      position:relative;
-      min-height: 220px;
-    }
-    .gcard .thumb{
-      height: 128px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      position:relative;
       overflow:hidden;
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      min-height: 170px;
+      position:relative;
     }
-    .gcard img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .thumb{
+      height:94px;
+      background: linear-gradient(135deg, rgba(185,128,255,.25), rgba(247,201,100,.10));
+      position:relative;
+    }
     .badge{
-      position:absolute; left:10px; top:10px;
-      padding:5px 8px;
+      position:absolute; top:10px; left:10px;
+      padding:4px 8px;
       border-radius:999px;
       font-size:11px;
       font-weight:900;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(6px);
+      color:#0a0614;
+      background: rgba(255,255,255,.85);
     }
-    .gcard .meta{ padding:10px 10px 12px; }
-    .name{ font-weight:1000; font-size:13px; margin:0 0 4px; }
-    .sub{ margin:0; color:var(--muted); font-size:12px; font-weight:700; }
-    .bar{
-      margin-top:10px;
-      height:10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.10);
-      overflow:hidden;
-    }
-    .fill{ height:100%; width:72%; background: linear-gradient(90deg, rgba(54,227,138,.8), rgba(184,107,255,.9)); }
-    .pct{ margin-top:6px; font-weight:1000; color: rgba(244,241,255,.85); font-size:12px; }
-    .hide{display:none !important}
+    .meta{padding:10px}
+    .meta .name{font-weight:900; font-size:13px}
+    .meta .sub{color:var(--muted); font-size:11px; margin-top:2px}
+    .bar{margin-top:10px; height:8px; border-radius:999px; background: rgba(255,255,255,.08); overflow:hidden; border:1px solid rgba(255,255,255,.10)}
+    .fill{height:100%; width:85%; background: linear-gradient(90deg, rgba(34,197,94,.9), rgba(185,128,255,.95))}
+    .pct{margin-top:8px; font-weight:900; font-size:12px}
 
     footer{
-      margin-top:20px;
-      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      color:var(--muted);
-      font-weight:800; font-size:12px;
-      padding:12px 2px 0;
-      border-top: 1px dashed rgba(255,255,255,.16);
-      position:relative; z-index:2;
+      margin-top:22px;
+      color: var(--muted);
+      font-size:12px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.10);
     }
 
-    @media (max-width: 1100px){ .grid{grid-template-columns: repeat(3, 1fr);} }
-    @media (max-width: 900px){
-      .heroInner{grid-template-columns: 1fr; }
-      .heroImg{min-height: 210px;}
+    /* responsive */
+    @media (max-width: 1080px){
+      .grid{grid-template-columns: repeat(3, minmax(0,1fr))}
       .brand,.right{min-width:auto}
     }
-    @media (max-width: 640px){
-      .grid{grid-template-columns: repeat(2, 1fr);}
-      .topbar{flex-wrap:wrap}
-      nav{width:100%}
-      .right{width:100%; justify-content:space-between}
+    @media (max-width: 900px){
+      .heroRow{grid-template-columns:1fr}
+      nav{justify-content:flex-start}
+    }
+    @media (max-width: 560px){
+      .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .headIn{flex-wrap:wrap}
+      .right{justify-content:flex-start}
     }
   </style>
 </head>
@@ -339,7 +337,13 @@
   <div class="snow" aria-hidden="true"></div>
 
   <header>
-    <div class="topbar">
+    <div class="topPills">
+      <span class="pill">Portal Hiburan & Update</span>
+      <span class="pill">Update 24 Jam</span>
+      <span class="pill">Live Chat</span>
+    </div>
+
+    <div class="headIn">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
@@ -348,209 +352,145 @@
         </div>
       </div>
 
-      <nav aria-label="menu">
-        <a class="navbtn active" href="#live">Live Update</a>
-        <a class="navbtn" href="#prediksi">Prediksi</a>
-        <a class="navbtn" href="#info">Info</a>
-        <a class="navbtn" href="#chat">Live Chat</a>
+      <nav>
+        <a class="navBtn active" href="#live">Live Update</a>
+        <a class="navBtn" href="#prediksi">Prediksi</a>
+        <a class="navBtn" href="#info">Info</a>
+        <a class="navBtn" href="#chat">Live Chat</a>
       </nav>
 
       <div class="right">
-        <span class="pill">Update 24 Jam</span>
-        <a class="login" href="#" onclick="return false;">LOGIN</a>
+        <span class="tag">Update 24 Jam</span>
+        <a class="login" href="#">LOGIN</a>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <div class="infoBar card">
+    <div class="card infoBar" id="live">
       <span class="dot" aria-hidden="true"></span>
       <div><b>Info:</b> Tulis pengumuman kamu di sini (update, event, atau berita).</div>
     </div>
 
-    <!-- Banner (kiri gambar, kanan teks) -->
-    <section class="hero card" id="live">
-      <div class="heroInner">
-        <div class="heroImg">
-          <div class="label">Banner Natal</div>
-          <div class="hint">
-            Ganti banner di bagian ini. Bisa pakai background atau pakai &lt;img&gt;.
-          </div>
-        </div>
+    <!-- Banner kiri + Bocoran kanan (sejajar) -->
+    <section class="heroRow">
+      <div class="card bannerBox">
+        <span class="bannerTag">Banner Natal</span>
+        <div class="bannerInner" aria-label="Area banner"></div>
+        <div class="bannerHint">Ganti banner di bagian ini. Bisa pakai background atau pakai &lt;img&gt;.</div>
+      </div>
 
-        <div class="heroText">
-          <h2>Bocoran Update Hari Ini</h2>
-          <p>Format ini sengaja dibuat ringkas dan mudah dibaca. Kamu bisa edit teks, tombol, dan link sesuai kebutuhan.</p>
-          <ul class="list">
-            <li>Update terbaru (manual / harian)</li>
-            <li>Rekomendasi jam & catatan</li>
-            <li>Info promo / kabar penting</li>
-          </ul>
-
-          <div class="ctas">
-            <a class="cta primary" href="https://wa.me/6281234567890" target="_blank" rel="noopener">Chat WA Update</a>
-            <a class="cta alt" href="#info">Lihat Info</a>
-            <a class="cta" href="#chat">Live Chat</a>
-          </div>
+      <div class="card bocoranBox">
+        <h2>Bocoran Update Hari Ini</h2>
+        <p>Format ini sengaja dibuat ringkas dan mudah dibaca. Kamu bisa edit teks, tombol, dan link sesuai kebutuhan.</p>
+        <ul class="list">
+          <li>Update terbaru (manual / harian)</li>
+          <li>Rekomendasi jam & catatan</li>
+          <li>Info promo / kabar penting</li>
+        </ul>
+        <div class="ctaRow">
+          <a class="cta primary" href="#" id="chat">Chat WA Update</a>
+          <a class="cta gold" href="#info">Lihat Info</a>
+          <a class="cta" href="#chat">Live Chat</a>
         </div>
       </div>
     </section>
 
+    <!-- Rekomendasi -->
     <div class="sectionHead">
       <h3>Rekomendasi Populer</h3>
-      <span>Update manual • pilih kategori di bawah</span>
+      <div class="note">Update manual • pilih kategori di bawah</div>
     </div>
 
-    <div class="tabs" role="tablist" aria-label="kategori">
-      <div class="tab active" role="tab" tabindex="0" data-filter="all">ALL</div>
-      <div class="tab" role="tab" tabindex="0" data-filter="brand1">Brand 1</div>
-      <div class="tab" role="tab" tabindex="0" data-filter="brand2">Brand 2</div>
-      <div class="tab" role="tab" tabindex="0" data-filter="brand3">Brand 3</div>
-      <div class="tab" role="tab" tabindex="0" data-filter="brand4">Brand 4</div>
-      <div class="tab" role="tab" tabindex="0" data-filter="brand5">Brand 5</div>
-      <div class="tab" role="tab" tabindex="0" data-filter="brand6">Brand 6</div>
+    <div class="tabs" role="tablist" aria-label="Kategori">
+      <button class="tab active" data-filter="all" type="button">ALL</button>
+      <button class="tab" data-filter="b1" type="button">Brand 1</button>
+      <button class="tab" data-filter="b2" type="button">Brand 2</button>
+      <button class="tab" data-filter="b3" type="button">Brand 3</button>
+      <button class="tab" data-filter="b4" type="button">Brand 4</button>
+      <button class="tab" data-filter="b5" type="button">Brand 5</button>
+      <button class="tab" data-filter="b6" type="button">Brand 6</button>
     </div>
 
-    <section class="card grid" aria-label="grid rekomendasi">
-      <article class="gcard" data-cat="brand1">
-        <div class="thumb">
-          <span class="badge">NEW</span>
-          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200" alt="Item 1" />
-        </div>
+    <section class="grid" id="info">
+      <article class="item" data-cat="b1">
+        <div class="thumb"><span class="badge">NEW</span></div>
         <div class="meta">
-          <p class="name">Item 1</p>
-          <p class="sub">Kategori: Brand 1</p>
+          <div class="name">Item 1</div>
+          <div class="sub">Kategori: Brand 1</div>
           <div class="bar"><div class="fill" style="width:97%"></div></div>
           <div class="pct">97%</div>
         </div>
       </article>
-
-      <article class="gcard" data-cat="brand2">
-        <div class="thumb">
-          <span class="badge">HOT</span>
-          <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302a?q=80&w=1200" alt="Item 2" />
-        </div>
+      <article class="item" data-cat="b2">
+        <div class="thumb"><span class="badge">HOT</span></div>
         <div class="meta">
-          <p class="name">Item 2</p>
-          <p class="sub">Kategori: Brand 2</p>
+          <div class="name">Item 2</div>
+          <div class="sub">Kategori: Brand 2</div>
           <div class="bar"><div class="fill" style="width:84%"></div></div>
           <div class="pct">84%</div>
         </div>
       </article>
-
-      <article class="gcard" data-cat="brand1">
-        <div class="thumb">
-          <span class="badge">HOT</span>
-          <img src="https://images.unsplash.com/photo-1585076800175-0aee1cfbcd23?q=80&w=1200" alt="Item 3" />
-        </div>
+      <article class="item" data-cat="b1">
+        <div class="thumb"><span class="badge">HOT</span></div>
         <div class="meta">
-          <p class="name">Item 3</p>
-          <p class="sub">Kategori: Brand 1</p>
+          <div class="name">Item 3</div>
+          <div class="sub">Kategori: Brand 1</div>
           <div class="bar"><div class="fill" style="width:85%"></div></div>
           <div class="pct">85%</div>
         </div>
       </article>
-
-      <article class="gcard" data-cat="brand3">
-        <div class="thumb">
-          <span class="badge">HOT</span>
-          <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200" alt="Item 4" />
-        </div>
+      <article class="item" data-cat="b3">
+        <div class="thumb"><span class="badge">HOT</span></div>
         <div class="meta">
-          <p class="name">Item 4</p>
-          <p class="sub">Kategori: Brand 3</p>
+          <div class="name">Item 4</div>
+          <div class="sub">Kategori: Brand 3</div>
           <div class="bar"><div class="fill" style="width:90%"></div></div>
           <div class="pct">90%</div>
         </div>
       </article>
-
-      <article class="gcard" data-cat="brand4">
-        <div class="thumb">
-          <span class="badge">HOT</span>
-          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200" alt="Item 5" />
-        </div>
+      <article class="item" data-cat="b4">
+        <div class="thumb"><span class="badge">HOT</span></div>
         <div class="meta">
-          <p class="name">Item 5</p>
-          <p class="sub">Kategori: Brand 4</p>
+          <div class="name">Item 5</div>
+          <div class="sub">Kategori: Brand 4</div>
           <div class="bar"><div class="fill" style="width:81%"></div></div>
           <div class="pct">81%</div>
         </div>
       </article>
-
-      <article class="gcard" data-cat="brand2">
-        <div class="thumb">
-          <span class="badge">HOT</span>
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200" alt="Item 6" />
-        </div>
+      <article class="item" data-cat="b2">
+        <div class="thumb"><span class="badge">HOT</span></div>
         <div class="meta">
-          <p class="name">Item 6</p>
-          <p class="sub">Kategori: Brand 2</p>
+          <div class="name">Item 6</div>
+          <div class="sub">Kategori: Brand 2</div>
           <div class="bar"><div class="fill" style="width:92%"></div></div>
           <div class="pct">92%</div>
         </div>
       </article>
     </section>
 
-    <section id="prediksi" style="margin-top:18px" class="card">
-      <div style="padding:14px 16px">
-        <h3 style="margin:0 0 6px; font-size:16px">Prediksi</h3>
-        <p style="margin:0; color:var(--muted); line-height:1.6">Isi konten prediksi kamu di sini (teks, jadwal, atau catatan).</p>
-      </div>
-    </section>
-
-    <section id="info" style="margin-top:12px" class="card">
-      <div style="padding:14px 16px">
-        <h3 style="margin:0 0 6px; font-size:16px">Info</h3>
-        <p style="margin:0; color:var(--muted); line-height:1.6">Tempat info penting, pengumuman, atau update lainnya.</p>
-      </div>
-    </section>
-
-    <section id="chat" style="margin-top:12px" class="card">
-      <div style="padding:14px 16px">
-        <h3 style="margin:0 0 6px; font-size:16px">Live Chat</h3>
-        <p style="margin:0; color:var(--muted); line-height:1.6">Taruh link live chat / kontak di sini.</p>
-      </div>
-    </section>
-
     <footer>
-      <div>© <span id="y"></span> Portal Tema Natal Ungu</div>
+      <div>© <span id="y"></span> Portal Ungu</div>
       <div>Built on GitHub Pages</div>
     </footer>
   </main>
 
   <script>
+    // year
     document.getElementById("y").textContent = new Date().getFullYear();
 
+    // simple tabs filter
     const tabs = Array.from(document.querySelectorAll(".tab"));
-    const cards = Array.from(document.querySelectorAll(".gcard"));
-
-    function setActiveTab(el){
-      tabs.forEach(t => t.classList.remove("active"));
-      el.classList.add("active");
-      const f = el.dataset.filter;
-      cards.forEach(c => {
-        const ok = (f === "all") || (c.dataset.cat === f);
-        c.classList.toggle("hide", !ok);
+    const items = Array.from(document.querySelectorAll(".item"));
+    tabs.forEach(t => t.addEventListener("click", () => {
+      tabs.forEach(x => x.classList.remove("active"));
+      t.classList.add("active");
+      const f = t.dataset.filter;
+      items.forEach(card => {
+        const ok = (f === "all") || (card.dataset.cat === f);
+        card.style.display = ok ? "" : "none";
       });
-    }
-
-    tabs.forEach(t => {
-      t.addEventListener("click", () => setActiveTab(t));
-      t.addEventListener("keydown", (e) => {
-        if(e.key === "Enter" || e.key === " "){
-          e.preventDefault();
-          setActiveTab(t);
-        }
-      });
-    });
-
-    const navBtns = Array.from(document.querySelectorAll(".navbtn"));
-    navBtns.forEach(a => {
-      a.addEventListener("click", () => {
-        navBtns.forEach(x => x.classList.remove("active"));
-        a.classList.add("active");
-      });
-    });
+    }));
   </script>
 </body>
 </html>
