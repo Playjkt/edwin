@@ -1,253 +1,496 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Ungu • Update Harian</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PORTAL UNGU — Tema Natal</title>
+  <meta name="description" content="Portal ungu tema Natal — update harian, info, dan live chat." />
 
-<style>
-:root{
-  --bg:#0b0616;
-  --bg2:#140a24;
-  --card:rgba(255,255,255,.08);
-  --line:rgba(255,255,255,.12);
-  --text:#eee;
-  --muted:#b9a9d9;
-  --accent:#a855f7;
-  --accent2:#22c55e;
-  --gold:#facc15;
-}
+  <style>
+    :root{
+      --bg0:#0a0614;
+      --bg1:#120a26;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.12);
+      --text:#f3efff;
+      --muted: rgba(243,239,255,.72);
+      --accent:#b980ff;
+      --accent2:#7c3aed;
+      --gold:#f7c964;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --r:18px;
+    }
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,system-ui,Arial;
-  color:var(--text);
-  background:
-    radial-gradient(circle at top,#24103f 0%,#0b0616 45%),
-    repeating-radial-gradient(circle at 20% 10%,rgba(255,255,255,.06) 0 1px,transparent 2px 60px);
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 420px at 20% 20%, rgba(185,128,255,.18), transparent 60%),
+        radial-gradient(900px 420px at 80% 10%, rgba(247,201,100,.14), transparent 55%),
+        radial-gradient(900px 520px at 50% 85%, rgba(124,58,237,.14), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      overflow-x:hidden;
+    }
 
-/* HEADER */
-header{
-  position:sticky;top:0;z-index:9;
-  background:linear-gradient(180deg,rgba(20,10,36,.95),rgba(10,5,20,.8));
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(10px);
-}
-.hwrap{
-  max-width:1200px;margin:auto;
-  display:flex;align-items:center;gap:16px;
-  padding:14px 18px;
-}
-.logo{
-  width:42px;height:42px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,#c084fc,#6d28d9 60%);
-  box-shadow:0 0 25px #7c3aed;
-}
-.brand b{font-size:18px}
-.brand small{display:block;color:var(--muted);font-size:12px}
-nav{margin-left:auto;display:flex;gap:8px}
-nav a{
-  padding:8px 14px;border-radius:999px;
-  text-decoration:none;color:#ddd;
-  border:1px solid var(--line);
-}
-nav a.active{background:rgba(168,85,247,.25);color:#fff}
-.login{
-  margin-left:8px;
-  padding:8px 16px;border-radius:999px;
-  background:linear-gradient(135deg,#facc15,#f59e0b);
-  color:#000;text-decoration:none;font-weight:700;
-}
+    /* --- subtle snow --- */
+    .snow{position:fixed; inset:0; pointer-events:none; z-index:0}
+    .snow::before, .snow::after{
+      content:"";
+      position:absolute; inset:-200px;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.85), transparent 40%),
+        radial-gradient(1px 1px at 90px 120px, rgba(255,255,255,.7), transparent 45%),
+        radial-gradient(1.5px 1.5px at 160px 80px, rgba(255,255,255,.8), transparent 45%),
+        radial-gradient(1px 1px at 220px 200px, rgba(255,255,255,.6), transparent 45%);
+      background-size: 260px 260px;
+      opacity:.35;
+      animation: snowFall 18s linear infinite;
+      filter: blur(.2px);
+    }
+    .snow::after{opacity:.22; animation-duration: 28s}
+    @keyframes snowFall{
+      from{transform: translateY(-120px)}
+      to{transform: translateY(420px)}
+    }
 
-/* MAIN */
-main{max-width:1200px;margin:auto;padding:22px 18px}
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-}
+    a{color:inherit; text-decoration:none}
+    .wrap{position:relative; z-index:1; max-width:1160px; margin:0 auto; padding:18px 18px 60px}
 
-/* INFO BAR */
-.infobar{
-  display:flex;gap:10px;align-items:center;
-  margin-bottom:18px;
-}
-.dot{width:10px;height:10px;border-radius:50%;background:#22c55e}
+    /* --- topbar pills --- */
+    .topPills{
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+      margin:10px 0 14px;
+    }
+    .pill{
+      padding:8px 12px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      font-size:12px;
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+    }
 
-/* BANNER */
-.bannerGrid{
-  display:grid;
-  grid-template-columns:1fr 1.2fr;
-  gap:18px;
-  margin-bottom:28px;
-}
-.bannerMedia{
-  border-radius:16px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  background:#000;
-}
-.bannerMedia img{
-  width:100%;
-  aspect-ratio:1/1;      /* 🔥 1280x1280 FIX */
-  object-fit:cover;
-  display:block;
-}
-.bannerInfo{
-  padding:16px;
-}
-.tag{
-  display:inline-block;
-  padding:6px 12px;border-radius:999px;
-  background:rgba(168,85,247,.25);
-  border:1px solid rgba(168,85,247,.45);
-  font-size:12px;margin-bottom:10px;
-}
-.bannerInfo h2{margin:6px 0 8px}
-.bannerInfo ul{padding-left:18px;color:var(--muted)}
-.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.cta a{
-  padding:10px 16px;border-radius:999px;
-  text-decoration:none;font-weight:600;
-}
-.wa{background:#22c55e;color:#032}
-.bonus{background:#facc15;color:#000}
-.up{background:#a855f7;color:#fff}
+    /* --- header --- */
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(10,6,20,.45);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(14px);
+    }
+    .headIn{
+      max-width:1160px; margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; min-width:220px;
+    }
+    .logo{
+      width:38px; height:38px; border-radius: 12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 45%),
+        radial-gradient(circle at 30% 30%, rgba(185,128,255,.9), rgba(124,58,237,.6));
+      box-shadow: 0 0 30px rgba(185,128,255,.25);
+    }
+    .brand h1{margin:0; font-size:14px; letter-spacing:.5px}
+    .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
 
-/* LIST */
-.sectionTitle{
-  display:flex;justify-content:space-between;align-items:center;
-  margin:26px 0 12px;
-}
-.tabs{display:flex;gap:8px;flex-wrap:wrap}
-.tabs span{
-  padding:6px 12px;border-radius:999px;
-  border:1px solid var(--line);
-  font-size:13px;color:#ddd;
-}
-.tabs .on{background:rgba(168,85,247,.25)}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:14px;
-}
-.item{
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--line);
-  border-radius:14px;overflow:hidden;
-}
-.item img{width:100%;height:120px;object-fit:cover}
-.meta{padding:10px}
-.bar{
-  height:6px;border-radius:6px;
-  background:#2a2140;margin-top:8px;
-}
-.fill{height:100%;background:linear-gradient(90deg,#22c55e,#a855f7)}
-footer{
-  text-align:center;color:var(--muted);
-  margin:40px 0 10px;font-size:13px;
-}
+    nav{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center}
+    .navBtn{
+      padding:10px 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      font-weight:700;
+      font-size:12px;
+      color: var(--muted);
+      transition:.18s ease;
+    }
+    .navBtn.active, .navBtn:hover{
+      color:var(--text);
+      border-color: rgba(185,128,255,.45);
+      box-shadow: 0 0 0 4px rgba(185,128,255,.10);
+      background: rgba(185,128,255,.10);
+    }
 
-/* MOBILE */
-@media(max-width:900px){
-  .bannerGrid{grid-template-columns:1fr}
-}
-</style>
+    .right{
+      display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width:220px;
+    }
+    .tag{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .login{
+      padding:10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(247,201,100,.55);
+      background: rgba(247,201,100,.08);
+      font-weight:800;
+      font-size:12px;
+      color: var(--text);
+    }
+
+    /* --- cards --- */
+    .card{
+      border:1px solid var(--stroke);
+      background: var(--card);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .infoBar{
+      margin-top:16px;
+      padding:14px 16px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,.14);
+      flex:0 0 auto;
+    }
+    .infoBar b{color: var(--accent)}
+
+    /* --- hero row (banner left, text right) --- */
+    .heroRow{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .bannerBox{
+      padding:16px;
+      min-height:220px;
+      position:relative;
+      background:
+        radial-gradient(900px 280px at 10% 10%, rgba(185,128,255,.22), transparent 55%),
+        radial-gradient(900px 280px at 90% 20%, rgba(247,201,100,.18), transparent 60%),
+        rgba(255,255,255,.04);
+    }
+    .bannerTag{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(185,128,255,.45);
+      background: rgba(185,128,255,.12);
+      font-weight:800;
+      font-size:12px;
+      margin-bottom:12px;
+    }
+    .bannerInner{
+      height:160px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+    }
+    .bannerInner::after{
+      content:"";
+      position:absolute; inset:-60px;
+      background:
+        radial-gradient(400px 200px at 25% 35%, rgba(185,128,255,.25), transparent 60%),
+        radial-gradient(300px 220px at 75% 45%, rgba(247,201,100,.22), transparent 60%);
+      filter: blur(2px);
+      transform: rotate(6deg);
+    }
+    .bannerHint{
+      margin-top:10px;
+      color: var(--muted);
+      font-size:12px;
+    }
+
+    .bocoranBox{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      background: rgba(255,255,255,.05);
+    }
+    .bocoranBox h2{margin:0; font-size:18px}
+    .bocoranBox p{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
+    .list{margin:6px 0 0; padding-left:18px; color:var(--text); font-size:13px}
+    .list li{margin:6px 0}
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      font-weight:800;
+      font-size:12px;
+      color: var(--text);
+    }
+    .cta.primary{
+      border-color: rgba(185,128,255,.55);
+      background: rgba(185,128,255,.14);
+    }
+    .cta.gold{
+      border-color: rgba(247,201,100,.6);
+      background: rgba(247,201,100,.10);
+    }
+
+    /* --- grid section (recommendations) --- */
+    .sectionHead{
+      margin-top:18px;
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+    }
+    .sectionHead h3{margin:0; font-size:16px}
+    .sectionHead .note{color:var(--muted); font-size:12px}
+
+    .tabs{
+      margin-top:10px;
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+    }
+    .tab{
+      padding:9px 12px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight:800;
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .tab.active{
+      color: var(--text);
+      border-color: rgba(34,197,94,.55);
+      background: rgba(34,197,94,.10);
+      box-shadow: 0 0 0 4px rgba(34,197,94,.10);
+    }
+
+    .grid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap:12px;
+    }
+    .item{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      min-height: 170px;
+      position:relative;
+    }
+    .thumb{
+      height:94px;
+      background: linear-gradient(135deg, rgba(185,128,255,.25), rgba(247,201,100,.10));
+      position:relative;
+    }
+    .badge{
+      position:absolute; top:10px; left:10px;
+      padding:4px 8px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      color:#0a0614;
+      background: rgba(255,255,255,.85);
+    }
+    .meta{padding:10px}
+    .meta .name{font-weight:900; font-size:13px}
+    .meta .sub{color:var(--muted); font-size:11px; margin-top:2px}
+    .bar{margin-top:10px; height:8px; border-radius:999px; background: rgba(255,255,255,.08); overflow:hidden; border:1px solid rgba(255,255,255,.10)}
+    .fill{height:100%; width:85%; background: linear-gradient(90deg, rgba(34,197,94,.9), rgba(185,128,255,.95))}
+    .pct{margin-top:8px; font-weight:900; font-size:12px}
+
+    footer{
+      margin-top:22px;
+      color: var(--muted);
+      font-size:12px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+
+    /* responsive */
+    @media (max-width: 1080px){
+      .grid{grid-template-columns: repeat(3, minmax(0,1fr))}
+      .brand,.right{min-width:auto}
+    }
+    @media (max-width: 900px){
+      .heroRow{grid-template-columns:1fr}
+      nav{justify-content:flex-start}
+    }
+    @media (max-width: 560px){
+      .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .headIn{flex-wrap:wrap}
+      .right{justify-content:flex-start}
+    }
+  </style>
 </head>
 
 <body>
+  <div class="snow" aria-hidden="true"></div>
 
-<header>
-  <div class="hwrap">
-    <div class="logo"></div>
-    <div class="brand">
-      <b>PORTAL UNGU</b>
-      <small>Theme Natal • Update Harian</small>
+  <header>
+    <div class="topPills">
+      <span class="pill">Portal Hiburan & Update</span>
+      <span class="pill">Update 24 Jam</span>
+      <span class="pill">Live Chat</span>
     </div>
-    <nav>
-      <a class="active">Live Update</a>
-      <a>Prediksi</a>
-      <a>Info</a>
-      <a>Live Chat</a>
-    </nav>
-    <a class="login">LOGIN</a>
-  </div>
-</header>
 
-<main>
-
-  <div class="card infobar">
-    <span class="dot"></span>
-    <b>Info:</b> Tulis pengumuman kamu di sini (update, event, atau berita).
-  </div>
-
-  <!-- BANNER -->
-  <section class="card">
-    <div class="bannerGrid">
-      <div class="bannerMedia">
-        <!-- GANTI LINK GAMBAR 1280x1280 -->
-        <img src="https://images.unsplash.com/photo-1608889175123-8ee8c7b77c57?q=80&w=1280" alt="Banner Natal">
-      </div>
-
-      <div class="bannerInfo">
-        <span class="tag">🎄 Update Hari Ini</span>
-        <h2>Bocoran Update Hari Ini</h2>
-        <p class="muted">
-          Format ringkas & mudah dibaca. Cocok untuk info harian,
-          jam main, dan catatan penting.
-        </p>
-        <ul>
-          <li>Update terbaru (manual / harian)</li>
-          <li>Rekomendasi jam main & catatan</li>
-          <li>Info promo / kabar penting</li>
-        </ul>
-        <div class="cta">
-          <a class="wa">Chat WA Update</a>
-          <a class="bonus">Saldo Gratis</a>
-          <a class="up">Upgrade Winrate</a>
+    <div class="headIn">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>PORTAL UNGU</h1>
+          <small>Theme Natal • Update Harian</small>
         </div>
       </div>
+
+      <nav>
+        <a class="navBtn active" href="#live">Live Update</a>
+        <a class="navBtn" href="#prediksi">Prediksi</a>
+        <a class="navBtn" href="#info">Info</a>
+        <a class="navBtn" href="#chat">Live Chat</a>
+      </nav>
+
+      <div class="right">
+        <span class="tag">Update 24 Jam</span>
+        <a class="login" href="#">LOGIN</a>
+      </div>
     </div>
-  </section>
+  </header>
 
-  <!-- LIST -->
-  <div class="sectionTitle">
-    <h3>Rekomendasi Populer</h3>
-    <small class="muted">Update manual • pilih kategori</small>
-  </div>
-
-  <div class="tabs">
-    <span class="on">ALL</span><span>Brand 1</span><span>Brand 2</span>
-    <span>Brand 3</span><span>Brand 4</span>
-  </div>
-
-  <div class="grid">
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420">
-      <div class="meta">Item 1<div class="bar"><div class="fill" style="width:97%"></div></div></div>
+  <main class="wrap">
+    <div class="card infoBar" id="live">
+      <span class="dot" aria-hidden="true"></span>
+      <div><b>Info:</b> Tulis pengumuman kamu di sini (update, event, atau berita).</div>
     </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f">
-      <div class="meta">Item 2<div class="bar"><div class="fill" style="width:84%"></div></div></div>
+
+    <!-- Banner kiri + Bocoran kanan (sejajar) -->
+    <section class="heroRow">
+      <div class="card bannerBox">
+        <span class="bannerTag">Banner Natal</span>
+        <div class="bannerInner" aria-label="Area banner"></div>
+        <div class="bannerHint">Ganti banner di bagian ini. Bisa pakai background atau pakai &lt;img&gt;.</div>
+      </div>
+
+      <div class="card bocoranBox">
+        <h2>Bocoran Update Hari Ini</h2>
+        <p>Format ini sengaja dibuat ringkas dan mudah dibaca. Kamu bisa edit teks, tombol, dan link sesuai kebutuhan.</p>
+        <ul class="list">
+          <li>Update terbaru (manual / harian)</li>
+          <li>Rekomendasi jam & catatan</li>
+          <li>Info promo / kabar penting</li>
+        </ul>
+        <div class="ctaRow">
+          <a class="cta primary" href="#" id="chat">Chat WA Update</a>
+          <a class="cta gold" href="#info">Lihat Info</a>
+          <a class="cta" href="#chat">Live Chat</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rekomendasi -->
+    <div class="sectionHead">
+      <h3>Rekomendasi Populer</h3>
+      <div class="note">Update manual • pilih kategori di bawah</div>
     </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae">
-      <div class="meta">Item 3<div class="bar"><div class="fill" style="width:90%"></div></div></div>
+
+    <div class="tabs" role="tablist" aria-label="Kategori">
+      <button class="tab active" data-filter="all" type="button">ALL</button>
+      <button class="tab" data-filter="b1" type="button">Brand 1</button>
+      <button class="tab" data-filter="b2" type="button">Brand 2</button>
+      <button class="tab" data-filter="b3" type="button">Brand 3</button>
+      <button class="tab" data-filter="b4" type="button">Brand 4</button>
+      <button class="tab" data-filter="b5" type="button">Brand 5</button>
+      <button class="tab" data-filter="b6" type="button">Brand 6</button>
     </div>
-  </div>
 
-</main>
+    <section class="grid" id="info">
+      <article class="item" data-cat="b1">
+        <div class="thumb"><span class="badge">NEW</span></div>
+        <div class="meta">
+          <div class="name">Item 1</div>
+          <div class="sub">Kategori: Brand 1</div>
+          <div class="bar"><div class="fill" style="width:97%"></div></div>
+          <div class="pct">97%</div>
+        </div>
+      </article>
+      <article class="item" data-cat="b2">
+        <div class="thumb"><span class="badge">HOT</span></div>
+        <div class="meta">
+          <div class="name">Item 2</div>
+          <div class="sub">Kategori: Brand 2</div>
+          <div class="bar"><div class="fill" style="width:84%"></div></div>
+          <div class="pct">84%</div>
+        </div>
+      </article>
+      <article class="item" data-cat="b1">
+        <div class="thumb"><span class="badge">HOT</span></div>
+        <div class="meta">
+          <div class="name">Item 3</div>
+          <div class="sub">Kategori: Brand 1</div>
+          <div class="bar"><div class="fill" style="width:85%"></div></div>
+          <div class="pct">85%</div>
+        </div>
+      </article>
+      <article class="item" data-cat="b3">
+        <div class="thumb"><span class="badge">HOT</span></div>
+        <div class="meta">
+          <div class="name">Item 4</div>
+          <div class="sub">Kategori: Brand 3</div>
+          <div class="bar"><div class="fill" style="width:90%"></div></div>
+          <div class="pct">90%</div>
+        </div>
+      </article>
+      <article class="item" data-cat="b4">
+        <div class="thumb"><span class="badge">HOT</span></div>
+        <div class="meta">
+          <div class="name">Item 5</div>
+          <div class="sub">Kategori: Brand 4</div>
+          <div class="bar"><div class="fill" style="width:81%"></div></div>
+          <div class="pct">81%</div>
+        </div>
+      </article>
+      <article class="item" data-cat="b2">
+        <div class="thumb"><span class="badge">HOT</span></div>
+        <div class="meta">
+          <div class="name">Item 6</div>
+          <div class="sub">Kategori: Brand 2</div>
+          <div class="bar"><div class="fill" style="width:92%"></div></div>
+          <div class="pct">92%</div>
+        </div>
+      </article>
+    </section>
 
-<footer>
-  © <span id="y"></span> Portal Ungu • Built on GitHub Pages
-</footer>
+    <footer>
+      <div>© <span id="y"></span> Portal Ungu</div>
+      <div>Built on GitHub Pages</div>
+    </footer>
+  </main>
 
-<script>
-document.getElementById("y").textContent=new Date().getFullYear();
-</script>
+  <script>
+    // year
+    document.getElementById("y").textContent = new Date().getFullYear();
 
+    // simple tabs filter
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const items = Array.from(document.querySelectorAll(".item"));
+    tabs.forEach(t => t.addEventListener("click", () => {
+      tabs.forEach(x => x.classList.remove("active"));
+      t.classList.add("active");
+      const f = t.dataset.filter;
+      items.forEach(card => {
+        const ok = (f === "all") || (card.dataset.cat === f);
+        card.style.display = ok ? "" : "none";
+      });
+    }));
+  </script>
 </body>
 </html>
