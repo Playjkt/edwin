@@ -2,546 +2,555 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MUSTANG77 | Official Portal</title>
-  <meta name="description" content="Portal hiburan, update, rekomendasi, dan info." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portal Update - Tema Natal Ungu</title>
+  <meta name="description" content="Portal update bertema Natal dengan warna ungu gelap. Banner, menu, dan grid kartu rekomendasi." />
 
   <style>
     :root{
-      --bg:#06240f;
-      --bg2:#0a3a18;
-      --card:#0b2f14;
-      --line:rgba(255,255,255,.12);
-      --text:#eafff1;
-      --muted:#b7e7c8;
-      --accent:#43ff6a;
-      --accent2:#ffd400;
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
-      --radius:18px;
+      --bg0:#0b0613;
+      --bg1:#130826;
+      --card: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.12);
+      --text:#f4f1ff;
+      --muted: rgba(244,241,255,.75);
+      --accent:#b86bff;
+      --accent2:#ffcf6b;
+      --good:#36e38a;
+      --shadow: 0 18px 45px rgba(0,0,0,.55);
+      --radius: 18px;
     }
+
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:
-        radial-gradient(900px 500px at 10% 15%, rgba(67,255,106,.12), transparent 60%),
-        radial-gradient(900px 500px at 85% 25%, rgba(255,212,0,.08), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      min-height:100vh;
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1120px;margin:0 auto;padding:18px}
-    .chipbar{
-      display:flex; gap:10px; align-items:center; justify-content:center;
-      margin:10px 0 12px;
-      flex-wrap:wrap;
-    }
-    .chip{
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(0,0,0,.18);
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-weight:700;
-      font-size:12px;
-      backdrop-filter: blur(8px);
+        radial-gradient(1200px 600px at 10% 10%, rgba(184,107,255,.18), transparent 55%),
+        radial-gradient(900px 500px at 90% 20%, rgba(255,207,107,.12), transparent 55%),
+        radial-gradient(900px 600px at 60% 95%, rgba(54,227,138,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      overflow-x:hidden;
     }
 
-    /* ===== Header ===== */
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1120px; margin:0 auto; padding:18px 18px 60px}
+
+    /* Snow */
+    .snow{
+      position:fixed; inset:0; pointer-events:none; z-index:1;
+      opacity:.75;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.9) 50%, transparent 51%),
+        radial-gradient(2px 2px at 140px 80px, rgba(255,255,255,.7) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 70px 140px, rgba(255,255,255,.6) 50%, transparent 51%),
+        radial-gradient(1.8px 1.8px at 220px 160px, rgba(255,255,255,.8) 50%, transparent 51%),
+        radial-gradient(1.2px 1.2px at 280px 40px, rgba(255,255,255,.6) 50%, transparent 51%);
+      background-size: 320px 220px;
+      animation: snowFall 16s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(184,107,255,.20));
+    }
+    @keyframes snowFall{
+      from{transform: translateY(-220px)}
+      to{transform: translateY(220px)}
+    }
+
+    /* Header */
     header{
       position:sticky; top:0; z-index:50;
-      background:rgba(6,36,15,.65);
       backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(19,8,38,.82), rgba(11,6,19,.55));
       border-bottom:1px solid var(--line);
     }
-    .top{
+    .topbar{
       display:flex; align-items:center; justify-content:space-between;
-      padding:14px 18px;
       gap:12px;
+      padding:12px 18px;
     }
-    .brand{display:flex;align-items:center;gap:12px}
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width:220px;
+    }
     .logo{
-      width:44px;height:44px;border-radius:14px;
-      background: radial-gradient(circle at 30% 30%, #8cffb1, #19d24a 45%, #0a6a25 100%);
-      box-shadow: 0 0 30px rgba(67,255,106,.25);
+      width:40px; height:40px; border-radius:14px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,0) 45%),
+        radial-gradient(circle at 60% 70%, rgba(184,107,255,.95), rgba(184,107,255,0) 60%),
+        linear-gradient(135deg, rgba(184,107,255,.65), rgba(54,227,138,.25));
+      box-shadow: 0 0 18px rgba(184,107,255,.35);
     }
-    .brand h1{margin:0;font-size:16px;letter-spacing:.5px}
-    .brand small{display:block;color:var(--muted);font-weight:700;font-size:12px;margin-top:2px}
+    .brand h1{font-size:14px; margin:0; letter-spacing:.6px}
+    .brand small{display:block; margin-top:2px; color:var(--muted); font-weight:600}
+
     nav{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      display:flex; align-items:center; gap:8px;
+      flex-wrap:wrap;
     }
     .navbtn{
-      padding:10px 14px;
-      border-radius:12px;
+      padding:10px 12px;
+      border-radius:999px;
       border:1px solid var(--line);
-      background:rgba(0,0,0,.18);
+      background: rgba(255,255,255,.04);
       color:var(--muted);
-      font-weight:800;
+      font-weight:700;
       font-size:13px;
-      transition:.18s;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
     }
-    .navbtn:hover{transform:translateY(-1px);border-color:rgba(67,255,106,.35)}
+    .navbtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
     .navbtn.active{
-      background:rgba(67,255,106,.12);
       color:var(--text);
-      border-color:rgba(67,255,106,.35);
-      box-shadow: 0 0 22px rgba(67,255,106,.14);
+      border-color: rgba(184,107,255,.55);
+      background: linear-gradient(135deg, rgba(184,107,255,.25), rgba(255,255,255,.06));
+      box-shadow: 0 0 0 4px rgba(184,107,255,.10);
     }
+
     .right{
       display:flex; align-items:center; gap:10px;
+      min-width:220px; justify-content:flex-end;
     }
     .pill{
-      padding:8px 12px; border-radius:999px;
+      padding:8px 10px;
       border:1px solid var(--line);
-      background:rgba(0,0,0,.18);
-      font-weight:900; font-size:12px; color:var(--muted);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-weight:700; font-size:12px;
     }
     .login{
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid rgba(255,212,0,.35);
-      background:rgba(255,212,0,.10);
-      color:var(--text);
-      font-weight:900;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,207,107,.55);
+      background: linear-gradient(135deg, rgba(255,207,107,.20), rgba(255,255,255,.03));
+      font-weight:900; font-size:12px;
     }
 
-    /* ===== Cards ===== */
+    /* Cards */
     .card{
-      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08));
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
       border:1px solid var(--line);
-      border-radius:var(--radius);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
+      position:relative;
+      z-index:2; /* above snow */
     }
 
-    /* ===== Info bar ===== */
+    /* Info bar */
     .infoBar{
-      margin-top:14px;
+      margin-top:18px;
       padding:12px 14px;
       display:flex; gap:10px; align-items:center;
       color:var(--muted);
     }
-    .infoBar b{color:var(--accent2)}
     .dot{
-      width:10px;height:10px;border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 18px rgba(67,255,106,.6);
-      flex:none;
+      width:10px; height:10px; border-radius:999px;
+      background: var(--good);
+      box-shadow: 0 0 0 5px rgba(54,227,138,.12), 0 0 16px rgba(54,227,138,.25);
+      flex:0 0 auto;
     }
 
-    /* ===== Banner ===== */
-    .banner{
-      margin-top:12px;
-      padding:0;
+    /* Banner hero with LEFT image + RIGHT text */
+    .hero{ margin-top:14px; overflow:hidden; }
+    .heroInner{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      padding:16px;
+      align-items:stretch;
+    }
+    .heroImg{
+      border-radius: 16px;
       overflow:hidden;
-      position:relative;
-      min-height:240px;
+      border: 1px solid rgba(255,255,255,.10);
       background:
-        radial-gradient(600px 240px at 20% 40%, rgba(67,255,106,.18), transparent 60%),
-        radial-gradient(600px 240px at 80% 50%, rgba(255,212,0,.10), transparent 60%),
-        linear-gradient(135deg, rgba(0,0,0,.45), rgba(0,0,0,.12));
+        radial-gradient(900px 260px at 20% 30%, rgba(184,107,255,.22), transparent 55%),
+        radial-gradient(650px 260px at 85% 45%, rgba(255,207,107,.14), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      min-height: 240px;
+      position:relative;
     }
-    .bannerInner{
-      padding:22px;
-      display:flex;
-      align-items:flex-end;
-      min-height:240px;
+    .heroImg::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.35));
     }
-    .banner h2{margin:0 0 6px;font-size:30px}
-    .banner p{margin:0;color:var(--muted);max-width:720px;font-weight:700}
-    .bannerDots{
-      position:absolute; left:0; right:0; bottom:14px;
-      display:flex; justify-content:center; gap:8px;
+    .heroImg .label{
+      position:absolute; left:14px; top:14px;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(184,107,255,.22);
+      border:1px solid rgba(184,107,255,.55);
+      font-weight:900;
+      font-size:12px;
+      z-index:1;
     }
-    .bannerDots span{
-      width:7px;height:7px;border-radius:50%;
-      background:rgba(255,255,255,.25);
-      border:1px solid var(--line);
+    .heroImg .hint{
+      position:absolute; left:14px; right:14px; bottom:12px;
+      color: rgba(244,241,255,.85);
+      font-size:12px;
+      z-index:1;
+      line-height:1.35;
     }
-    .bannerDots span.on{background:var(--accent2);}
 
-    /* ===== Section title ===== */
+    .heroText{
+      padding:12px 12px 8px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:10px;
+    }
+    .heroText h2{ margin:0; font-size:18px; letter-spacing:.2px; }
+    .heroText p{ margin:0; color:var(--muted); line-height:1.55 }
+    .list{ margin:6px 0 0; padding-left:16px; color: rgba(244,241,255,.85); line-height:1.6; }
+    .ctas{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      font-weight:900;
+      font-size:13px;
+      transition: transform .08s ease, filter .2s ease;
+    }
+    .cta:hover{transform: translateY(-1px); filter: brightness(1.05)}
+    .cta.primary{
+      border-color: rgba(184,107,255,.55);
+      background: linear-gradient(135deg, rgba(184,107,255,.35), rgba(255,255,255,.06));
+    }
+    .cta.alt{
+      border-color: rgba(255,207,107,.55);
+      background: linear-gradient(135deg, rgba(255,207,107,.20), rgba(255,255,255,.06));
+      color: #1b102a;
+    }
+
+    /* Section Head */
     .sectionHead{
+      margin-top:18px;
       display:flex; align-items:flex-end; justify-content:space-between;
       gap:10px;
-      margin:18px 0 10px;
     }
-    .sectionHead h3{margin:0;font-size:16px}
-    .sectionHead span{color:var(--muted);font-size:12px;font-weight:700}
+    .sectionHead h3{margin:0; font-size:16px}
+    .sectionHead span{color:var(--muted); font-size:12px; font-weight:700}
 
-    /* ===== Provider / Tabs ===== */
+    /* Tabs bar */
     .tabs{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      padding:12px;
+      margin-top:10px;
+      display:flex; align-items:center; gap:8px;
+      overflow:auto;
+      padding-bottom:6px;
+      position:relative;
+      z-index:2;
     }
     .tab{
-      padding:9px 12px;
-      border-radius:12px;
+      flex: 0 0 auto;
+      padding:10px 12px;
+      border-radius:999px;
       border:1px solid var(--line);
-      background:rgba(0,0,0,.18);
+      background: rgba(255,255,255,.03);
       color:var(--muted);
       font-weight:900;
       font-size:12px;
       cursor:pointer;
-      transition:.18s;
-      white-space:nowrap;
+      user-select:none;
     }
-    .tab:hover{transform:translateY(-1px)}
     .tab.active{
-      background:rgba(67,255,106,.12);
       color:var(--text);
-      border-color:rgba(67,255,106,.35);
-    }
-    .tabArrow{
-      margin-left:auto;
-      padding:9px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.18);
-      cursor:pointer;
-      font-weight:900;
-      color:var(--muted);
+      border-color: rgba(54,227,138,.55);
+      background: linear-gradient(135deg, rgba(54,227,138,.18), rgba(255,255,255,.04));
     }
 
-    /* ===== Game grid ===== */
+    /* Grid cards */
     .grid{
+      margin-top:10px;
       display:grid;
       grid-template-columns: repeat(6, 1fr);
-      gap:14px;
+      gap:12px;
       padding:12px;
     }
     .gcard{
       border-radius:16px;
       overflow:hidden;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.15);
-      transition:.18s;
-    }
-    .gcard:hover{transform:translateY(-2px);border-color:rgba(255,212,0,.25)}
-    .thumb{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
       position:relative;
-      aspect-ratio: 4 / 3;
+      min-height: 220px;
+    }
+    .gcard .thumb{
+      height: 128px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      position:relative;
       overflow:hidden;
-      background:#0b1f11;
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
     }
-    .thumb img{
-      width:100%;height:100%;
-      object-fit:cover;
-      display:block;
-    }
+    .gcard img{ width:100%; height:100%; object-fit:cover; display:block; }
     .badge{
-      position:absolute;
-      top:10px; left:10px;
-      padding:4px 8px;
+      position:absolute; left:10px; top:10px;
+      padding:5px 8px;
       border-radius:999px;
       font-size:11px;
       font-weight:900;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.35);
-    }
-    .badge.hot{background:rgba(255,61,61,.18);border-color:rgba(255,61,61,.35)}
-    .badge.new{background:rgba(67,255,106,.15);border-color:rgba(67,255,106,.35)}
-    .meta{padding:10px 12px 12px}
-    .name{font-weight:900}
-    .sub{color:var(--muted);font-size:12px;font-weight:700;margin-top:2px}
-    .bar{margin-top:10px;height:10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.06);overflow:hidden}
-    .fill{height:100%;background:linear-gradient(90deg, rgba(255,212,0,.8), rgba(67,255,106,.65))}
-    .pct{margin-top:6px;color:var(--muted);font-size:12px;font-weight:900}
-
-    /* ===== Bocoran Section ===== */
-    .bocoranWrap{margin-top:18px}
-    .bocoranGrid{
-      display:grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap:16px;
-      padding:14px;
-    }
-    .bocoranImage{
-      position:relative;
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:#0b1f11;
-      min-height:220px;
-    }
-    .bocoranImage img{width:100%;height:100%;object-fit:cover;display:block}
-    .tagHot{
-      position:absolute;
-      top:12px; left:12px;
-      background:linear-gradient(135deg,#ff3d3d,#ff9f00);
-      color:#fff;
-      padding:6px 12px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:900;
       border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
     }
-    .bocoranInfo{padding:6px 6px 6px 2px}
-    .bocoranInfo h4{margin:0 0 6px;font-size:16px}
-    .bocoranInfo p{margin:0;color:var(--muted);font-weight:700;line-height:1.55}
-    .bocoranList{margin:10px 0 12px;padding-left:18px;color:var(--text)}
-    .bocoranList li{margin-bottom:6px;color:var(--muted);font-weight:800}
-    .ctaGroup{display:flex;gap:10px;flex-wrap:wrap}
-    .cta{
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      font-weight:900;
-      font-size:13px;
-      background:rgba(0,0,0,.18);
-      color:var(--text);
-      transition:.18s;
+    .gcard .meta{ padding:10px 10px 12px; }
+    .name{ font-weight:1000; font-size:13px; margin:0 0 4px; }
+    .sub{ margin:0; color:var(--muted); font-size:12px; font-weight:700; }
+    .bar{
+      margin-top:10px;
+      height:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
     }
-    .cta:hover{transform:translateY(-1px)}
-    .cta.wa{background:linear-gradient(135deg,#25D366,#1ebe5d);border-color:rgba(37,211,102,.35)}
-    .cta.bonus{background:linear-gradient(135deg,#ffd400,#ffb700);color:#122; border-color:rgba(255,212,0,.35)}
-    .cta.upgrade{background:linear-gradient(135deg,#8bf2b3,#3cff88);color:#053; border-color:rgba(67,255,106,.35)}
+    .fill{ height:100%; width:72%; background: linear-gradient(90deg, rgba(54,227,138,.8), rgba(184,107,255,.9)); }
+    .pct{ margin-top:6px; font-weight:1000; color: rgba(244,241,255,.85); font-size:12px; }
+    .hide{display:none !important}
 
     footer{
-      margin-top:18px;
-      padding:18px 4px;
-      display:flex;
-      justify-content:space-between;
+      margin-top:20px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
       color:var(--muted);
-      font-weight:800;
-      font-size:12px;
-      opacity:.9;
+      font-weight:800; font-size:12px;
+      padding:12px 2px 0;
+      border-top: 1px dashed rgba(255,255,255,.16);
+      position:relative; z-index:2;
     }
 
-    /* ===== Responsive ===== */
-    @media (max-width:1100px){
-      .grid{grid-template-columns: repeat(3,1fr)}
+    @media (max-width: 1100px){ .grid{grid-template-columns: repeat(3, 1fr);} }
+    @media (max-width: 900px){
+      .heroInner{grid-template-columns: 1fr; }
+      .heroImg{min-height: 210px;}
+      .brand,.right{min-width:auto}
     }
-    @media (max-width:700px){
-      .top{flex-wrap:wrap}
+    @media (max-width: 640px){
+      .grid{grid-template-columns: repeat(2, 1fr);}
+      .topbar{flex-wrap:wrap}
       nav{width:100%}
-      .grid{grid-template-columns: repeat(2,1fr)}
-      .banner h2{font-size:24px}
-      .bocoranGrid{grid-template-columns:1fr}
+      .right{width:100%; justify-content:space-between}
     }
   </style>
 </head>
 
 <body>
+  <div class="snow" aria-hidden="true"></div>
+
   <header>
-    <div class="wrap">
-      <div class="chipbar">
-        <div class="chip">Portal Hiburan &amp; Update</div>
-        <div class="chip">Update 24 Jam</div>
-        <div class="chip">Live Chat</div>
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>PORTAL UNGU</h1>
+          <small>Theme Natal • Update Harian</small>
+        </div>
       </div>
 
-      <div class="top">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            <h1>MUSTANG77</h1>
-            <small>Official Portal</small>
-          </div>
-        </div>
+      <nav aria-label="menu">
+        <a class="navbtn active" href="#live">Live Update</a>
+        <a class="navbtn" href="#prediksi">Prediksi</a>
+        <a class="navbtn" href="#info">Info</a>
+        <a class="navbtn" href="#chat">Live Chat</a>
+      </nav>
 
-        <nav>
-          <a class="navbtn active" href="#live">Live Update</a>
-          <a class="navbtn" href="#prediksi">Prediksi</a>
-          <a class="navbtn" href="#promo">Promo</a>
-          <a class="navbtn" href="#chat">Live Chat</a>
-        </nav>
-
-        <div class="right">
-          <span class="pill">FB</span>
-          <span class="pill">IG</span>
-          <a class="login" href="#">LOGIN</a>
-        </div>
+      <div class="right">
+        <span class="pill">Update 24 Jam</span>
+        <a class="login" href="#" onclick="return false;">LOGIN</a>
       </div>
     </div>
   </header>
 
   <main class="wrap">
     <div class="infoBar card">
-      <span class="dot"></span>
-      <div><b>Info:</b> Tulis pengumuman kamu di sini (info update, event, atau berita).</div>
+      <span class="dot" aria-hidden="true"></span>
+      <div><b>Info:</b> Tulis pengumuman kamu di sini (update, event, atau berita).</div>
     </div>
 
-    <!-- ===== Banner Utama ===== -->
-    <section class="banner card" id="live">
-      <div class="bannerInner">
-        <div>
-          <h2>Banner Utama</h2>
-          <p>Ganti ini dengan banner kamu. Bisa pakai gambar di background atau pakai &lt;img&gt;.</p>
-        </div>
-      </div>
-      <div class="bannerDots">
-        <span class="on"></span><span></span><span></span>
-      </div>
-    </section>
-
-        <!-- ===== Bocoran (Kiri gambar, kanan info + tombol) ===== -->
-    <section class="bocoranWrap card" id="promo">
-      <div class="bocoranGrid">
-        <div class="bocoranImage">
-          <!-- GANTI GAMBAR INI -->
-          <img src="https://i.imgur.com/5QOZ0QG.png" alt="Game Gacor Hari Ini">
-          <span class="tagHot">GACOR HARI INI</span>
+    <!-- Banner (kiri gambar, kanan teks) -->
+    <section class="hero card" id="live">
+      <div class="heroInner">
+        <div class="heroImg">
+          <div class="label">Banner Natal</div>
+          <div class="hint">
+            Ganti banner di bagian ini. Bisa pakai background atau pakai &lt;img&gt;.
+          </div>
         </div>
 
-        <div class="bocoranInfo" id="chat">
-          <h4>Bocoran Update Hari Ini</h4>
-          <p>
-            Update info berdasarkan pola & jam terbaik. Kamu bisa isi teks ini sesuka kamu.
-            Fokusnya: info terbaru, ringkas, dan mudah dipahami.
-          </p>
-
-          <ul class="bocoranList">
+        <div class="heroText">
+          <h2>Bocoran Update Hari Ini</h2>
+          <p>Format ini sengaja dibuat ringkas dan mudah dibaca. Kamu bisa edit teks, tombol, dan link sesuai kebutuhan.</p>
+          <ul class="list">
             <li>Update terbaru (manual / harian)</li>
-            <li>Rekomendasi jam main & catatan</li>
+            <li>Rekomendasi jam & catatan</li>
             <li>Info promo / kabar penting</li>
           </ul>
 
-          <div class="ctaGroup">
-            <a class="cta wa" href="https://wa.me/GANTI_LINK_WA_DISINI" target="_blank" rel="noopener">Chat WA Bocoran</a>
-            <a class="cta bonus" href="#" id="saldo">Saldo Gratis</a>
-            <a class="cta upgrade" href="#" id="upgrade">Upgrade Winrate</a>
+          <div class="ctas">
+            <a class="cta primary" href="https://wa.me/6281234567890" target="_blank" rel="noopener">Chat WA Update</a>
+            <a class="cta alt" href="#info">Lihat Info</a>
+            <a class="cta" href="#chat">Live Chat</a>
           </div>
         </div>
       </div>
     </section>
-    
-    <!-- ===== Rekomendasi Populer (Grid) ===== -->
+
     <div class="sectionHead">
       <h3>Rekomendasi Populer</h3>
-      <span>Update manual • pilih kategori di atas</span>
+      <span>Update manual • pilih kategori di bawah</span>
     </div>
 
-    <div class="card">
-      <div class="tabs">
-        <button class="tab active" data-filter="all">ALL</button>
-        <button class="tab" data-filter="brand1">Brand 1</button>
-        <button class="tab" data-filter="brand2">Brand 2</button>
-        <button class="tab" data-filter="brand3">Brand 3</button>
-        <button class="tab" data-filter="brand4">Brand 4</button>
-        <button class="tab" data-filter="brand5">Brand 5</button>
-        <button class="tab" data-filter="brand6">Brand 6</button>
-        <button class="tabArrow" type="button" onclick="scrollTabs()">›</button>
-      </div>
-
-      <div class="grid" id="grid">
-        <!-- CARD 1 -->
-        <article class="gcard" data-cat="brand1">
-          <div class="thumb">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=60" alt="Game 1">
-            <span class="badge new">NEW</span>
-          </div>
-          <div class="meta">
-            <div class="name">Item 1</div>
-            <div class="sub">Kategori: Brand 1</div>
-            <div class="bar"><div class="fill" style="width:97%"></div></div>
-            <div class="pct">97%</div>
-          </div>
-        </article>
-
-        <!-- CARD 2 -->
-        <article class="gcard" data-cat="brand2">
-          <div class="thumb">
-            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=60" alt="Game 2">
-            <span class="badge hot">HOT</span>
-          </div>
-          <div class="meta">
-            <div class="name">Item 2</div>
-            <div class="sub">Kategori: Brand 2</div>
-            <div class="bar"><div class="fill" style="width:84%"></div></div>
-            <div class="pct">84%</div>
-          </div>
-        </article>
-
-        <!-- CARD 3 -->
-        <article class="gcard" data-cat="brand1">
-          <div class="thumb">
-            <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=1200&q=60" alt="Game 3">
-            <span class="badge hot">HOT</span>
-          </div>
-          <div class="meta">
-            <div class="name">Item 3</div>
-            <div class="sub">Kategori: Brand 1</div>
-            <div class="bar"><div class="fill" style="width:85%"></div></div>
-            <div class="pct">85%</div>
-          </div>
-        </article>
-
-        <!-- CARD 4 -->
-        <article class="gcard" data-cat="brand3">
-          <div class="thumb">
-            <img src="https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?auto=format&fit=crop&w=1200&q=60" alt="Game 4">
-            <span class="badge hot">HOT</span>
-          </div>
-          <div class="meta">
-            <div class="name">Item 4</div>
-            <div class="sub">Kategori: Brand 3</div>
-            <div class="bar"><div class="fill" style="width:90%"></div></div>
-            <div class="pct">90%</div>
-          </div>
-        </article>
-
-        <!-- CARD 5 -->
-        <article class="gcard" data-cat="brand4">
-          <div class="thumb">
-            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=60" alt="Game 5">
-            <span class="badge hot">HOT</span>
-          </div>
-          <div class="meta">
-            <div class="name">Item 5</div>
-            <div class="sub">Kategori: Brand 4</div>
-            <div class="bar"><div class="fill" style="width:81%"></div></div>
-            <div class="pct">81%</div>
-          </div>
-        </article>
-
-        <!-- CARD 6 -->
-        <article class="gcard" data-cat="brand2">
-          <div class="thumb">
-            <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=60" alt="Game 6">
-            <span class="badge hot">HOT</span>
-          </div>
-          <div class="meta">
-            <div class="name">Item 6</div>
-            <div class="sub">Kategori: Brand 2</div>
-            <div class="bar"><div class="fill" style="width:92%"></div></div>
-            <div class="pct">92%</div>
-          </div>
-        </article>
-      </div>
+    <div class="tabs" role="tablist" aria-label="kategori">
+      <div class="tab active" role="tab" tabindex="0" data-filter="all">ALL</div>
+      <div class="tab" role="tab" tabindex="0" data-filter="brand1">Brand 1</div>
+      <div class="tab" role="tab" tabindex="0" data-filter="brand2">Brand 2</div>
+      <div class="tab" role="tab" tabindex="0" data-filter="brand3">Brand 3</div>
+      <div class="tab" role="tab" tabindex="0" data-filter="brand4">Brand 4</div>
+      <div class="tab" role="tab" tabindex="0" data-filter="brand5">Brand 5</div>
+      <div class="tab" role="tab" tabindex="0" data-filter="brand6">Brand 6</div>
     </div>
-    
+
+    <section class="card grid" aria-label="grid rekomendasi">
+      <article class="gcard" data-cat="brand1">
+        <div class="thumb">
+          <span class="badge">NEW</span>
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200" alt="Item 1" />
+        </div>
+        <div class="meta">
+          <p class="name">Item 1</p>
+          <p class="sub">Kategori: Brand 1</p>
+          <div class="bar"><div class="fill" style="width:97%"></div></div>
+          <div class="pct">97%</div>
+        </div>
+      </article>
+
+      <article class="gcard" data-cat="brand2">
+        <div class="thumb">
+          <span class="badge">HOT</span>
+          <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302a?q=80&w=1200" alt="Item 2" />
+        </div>
+        <div class="meta">
+          <p class="name">Item 2</p>
+          <p class="sub">Kategori: Brand 2</p>
+          <div class="bar"><div class="fill" style="width:84%"></div></div>
+          <div class="pct">84%</div>
+        </div>
+      </article>
+
+      <article class="gcard" data-cat="brand1">
+        <div class="thumb">
+          <span class="badge">HOT</span>
+          <img src="https://images.unsplash.com/photo-1585076800175-0aee1cfbcd23?q=80&w=1200" alt="Item 3" />
+        </div>
+        <div class="meta">
+          <p class="name">Item 3</p>
+          <p class="sub">Kategori: Brand 1</p>
+          <div class="bar"><div class="fill" style="width:85%"></div></div>
+          <div class="pct">85%</div>
+        </div>
+      </article>
+
+      <article class="gcard" data-cat="brand3">
+        <div class="thumb">
+          <span class="badge">HOT</span>
+          <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200" alt="Item 4" />
+        </div>
+        <div class="meta">
+          <p class="name">Item 4</p>
+          <p class="sub">Kategori: Brand 3</p>
+          <div class="bar"><div class="fill" style="width:90%"></div></div>
+          <div class="pct">90%</div>
+        </div>
+      </article>
+
+      <article class="gcard" data-cat="brand4">
+        <div class="thumb">
+          <span class="badge">HOT</span>
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200" alt="Item 5" />
+        </div>
+        <div class="meta">
+          <p class="name">Item 5</p>
+          <p class="sub">Kategori: Brand 4</p>
+          <div class="bar"><div class="fill" style="width:81%"></div></div>
+          <div class="pct">81%</div>
+        </div>
+      </article>
+
+      <article class="gcard" data-cat="brand2">
+        <div class="thumb">
+          <span class="badge">HOT</span>
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200" alt="Item 6" />
+        </div>
+        <div class="meta">
+          <p class="name">Item 6</p>
+          <p class="sub">Kategori: Brand 2</p>
+          <div class="bar"><div class="fill" style="width:92%"></div></div>
+          <div class="pct">92%</div>
+        </div>
+      </article>
+    </section>
+
+    <section id="prediksi" style="margin-top:18px" class="card">
+      <div style="padding:14px 16px">
+        <h3 style="margin:0 0 6px; font-size:16px">Prediksi</h3>
+        <p style="margin:0; color:var(--muted); line-height:1.6">Isi konten prediksi kamu di sini (teks, jadwal, atau catatan).</p>
+      </div>
+    </section>
+
+    <section id="info" style="margin-top:12px" class="card">
+      <div style="padding:14px 16px">
+        <h3 style="margin:0 0 6px; font-size:16px">Info</h3>
+        <p style="margin:0; color:var(--muted); line-height:1.6">Tempat info penting, pengumuman, atau update lainnya.</p>
+      </div>
+    </section>
+
+    <section id="chat" style="margin-top:12px" class="card">
+      <div style="padding:14px 16px">
+        <h3 style="margin:0 0 6px; font-size:16px">Live Chat</h3>
+        <p style="margin:0; color:var(--muted); line-height:1.6">Taruh link live chat / kontak di sini.</p>
+      </div>
+    </section>
+
     <footer>
-      <div>© <span id="y"></span> Portal Template</div>
+      <div>© <span id="y"></span> Portal Tema Natal Ungu</div>
       <div>Built on GitHub Pages</div>
     </footer>
   </main>
 
   <script>
-    // Tahun
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Filter Tabs
     const tabs = Array.from(document.querySelectorAll(".tab"));
     const cards = Array.from(document.querySelectorAll(".gcard"));
 
-    tabs.forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        tabs.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
+    function setActiveTab(el){
+      tabs.forEach(t => t.classList.remove("active"));
+      el.classList.add("active");
+      const f = el.dataset.filter;
+      cards.forEach(c => {
+        const ok = (f === "all") || (c.dataset.cat === f);
+        c.classList.toggle("hide", !ok);
+      });
+    }
 
-        const f = btn.dataset.filter;
-        cards.forEach(c=>{
-          const ok = (f === "all") || (c.dataset.cat === f);
-          c.style.display = ok ? "" : "none";
-        });
+    tabs.forEach(t => {
+      t.addEventListener("click", () => setActiveTab(t));
+      t.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          setActiveTab(t);
+        }
       });
     });
 
-    function scrollTabs(){
-      const tabsWrap = document.querySelector(".tabs");
-      tabsWrap.scrollLeft += 220;
-    }
+    const navBtns = Array.from(document.querySelectorAll(".navbtn"));
+    navBtns.forEach(a => {
+      a.addEventListener("click", () => {
+        navBtns.forEach(x => x.classList.remove("active"));
+        a.classList.add("active");
+      });
+    });
   </script>
 </body>
 </html>
