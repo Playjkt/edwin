@@ -1,253 +1,628 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Ungu • Update Harian</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PORTAL UNGU • Update Harian</title>
 
-<style>
-:root{
-  --bg:#0b0616;
-  --bg2:#140a24;
-  --card:rgba(255,255,255,.08);
-  --line:rgba(255,255,255,.12);
-  --text:#eee;
-  --muted:#b9a9d9;
-  --accent:#a855f7;
-  --accent2:#22c55e;
-  --gold:#facc15;
-}
+  <style>
+    :root{
+      --bg0:#070311;
+      --bg1:#0b0520;
+      --bg2:#140a2b;
+      --card: rgba(255,255,255,.075);
+      --card2: rgba(255,255,255,.06);
+      --line: rgba(255,255,255,.12);
+      --soft: rgba(255,255,255,.08);
+      --text:#f3f1ff;
+      --muted:#c3b6e3;
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,system-ui,Arial;
-  color:var(--text);
-  background:
-    radial-gradient(circle at top,#24103f 0%,#0b0616 45%),
-    repeating-radial-gradient(circle at 20% 10%,rgba(255,255,255,.06) 0 1px,transparent 2px 60px);
-}
+      --purple:#a855f7;
+      --purple2:#7c3aed;
+      --mint:#22c55e;
+      --gold:#fbbf24;
+      --rose:#fb7185;
+    }
 
-/* HEADER */
-header{
-  position:sticky;top:0;z-index:9;
-  background:linear-gradient(180deg,rgba(20,10,36,.95),rgba(10,5,20,.8));
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(10px);
-}
-.hwrap{
-  max-width:1200px;margin:auto;
-  display:flex;align-items:center;gap:16px;
-  padding:14px 18px;
-}
-.logo{
-  width:42px;height:42px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,#c084fc,#6d28d9 60%);
-  box-shadow:0 0 25px #7c3aed;
-}
-.brand b{font-size:18px}
-.brand small{display:block;color:var(--muted);font-size:12px}
-nav{margin-left:auto;display:flex;gap:8px}
-nav a{
-  padding:8px 14px;border-radius:999px;
-  text-decoration:none;color:#ddd;
-  border:1px solid var(--line);
-}
-nav a.active{background:rgba(168,85,247,.25);color:#fff}
-.login{
-  margin-left:8px;
-  padding:8px 16px;border-radius:999px;
-  background:linear-gradient(135deg,#facc15,#f59e0b);
-  color:#000;text-decoration:none;font-weight:700;
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(168,85,247,.28), transparent 60%),
+        radial-gradient(900px 700px at 85% 15%, rgba(34,197,94,.12), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(251,191,36,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg0) 55%, #05020c);
+      overflow-x:hidden;
+    }
 
-/* MAIN */
-main{max-width:1200px;margin:auto;padding:22px 18px}
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-}
+    /* --- starry / snowfall dots (cheap + light) --- */
+    .sky{
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(rgba(255,255,255,.35) 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,.22) 1px, transparent 1px);
+      background-size: 120px 120px, 180px 180px;
+      background-position: 0 0, 40px 70px;
+      opacity:.42;
+      filter: blur(.1px);
+      animation: drift 18s linear infinite;
+    }
+    @keyframes drift{
+      0%{ transform: translate3d(0,0,0); }
+      100%{ transform: translate3d(-60px, 60px, 0); }
+    }
 
-/* INFO BAR */
-.infobar{
-  display:flex;gap:10px;align-items:center;
-  margin-bottom:18px;
-}
-.dot{width:10px;height:10px;border-radius:50%;background:#22c55e}
+    /* --- header --- */
+    header{
+      position:sticky; top:0; z-index:50;
+      background: linear-gradient(180deg, rgba(16,8,34,.92), rgba(10,5,22,.74));
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+    }
+    .topbar{
+      max-width:1200px;
+      margin:0 auto;
+      padding:10px 18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:space-between;
+    }
+    .pills{display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      font-size:12px;
+      color:rgba(255,255,255,.85);
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
 
-/* BANNER */
-.bannerGrid{
-  display:grid;
-  grid-template-columns:1fr 1.2fr;
-  gap:18px;
-  margin-bottom:28px;
-}
-.bannerMedia{
-  border-radius:16px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  background:#000;
-}
-.bannerMedia img{
-  width:100%;
-  aspect-ratio:1/1;      /* 🔥 1280x1280 FIX */
-  object-fit:cover;
-  display:block;
-}
-.bannerInfo{
-  padding:16px;
-}
-.tag{
-  display:inline-block;
-  padding:6px 12px;border-radius:999px;
-  background:rgba(168,85,247,.25);
-  border:1px solid rgba(168,85,247,.45);
-  font-size:12px;margin-bottom:10px;
-}
-.bannerInfo h2{margin:6px 0 8px}
-.bannerInfo ul{padding-left:18px;color:var(--muted)}
-.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.cta a{
-  padding:10px 16px;border-radius:999px;
-  text-decoration:none;font-weight:600;
-}
-.wa{background:#22c55e;color:#032}
-.bonus{background:#facc15;color:#000}
-.up{background:#a855f7;color:#fff}
+    .navrow{
+      max-width:1200px;
+      margin:0 auto;
+      padding:12px 18px 14px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
+    }
+    .logo{
+      width:44px; height:44px; border-radius:14px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 35%),
+                  radial-gradient(circle at 30% 30%, rgba(168,85,247,.75), rgba(124,58,237,.40) 60%, rgba(34,197,94,.14));
+      box-shadow: 0 0 24px rgba(168,85,247,.35);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .brandTxt b{letter-spacing:.4px}
+    .brandTxt small{display:block; color:var(--muted); margin-top:2px; font-size:12px}
 
-/* LIST */
-.sectionTitle{
-  display:flex;justify-content:space-between;align-items:center;
-  margin:26px 0 12px;
-}
-.tabs{display:flex;gap:8px;flex-wrap:wrap}
-.tabs span{
-  padding:6px 12px;border-radius:999px;
-  border:1px solid var(--line);
-  font-size:13px;color:#ddd;
-}
-.tabs .on{background:rgba(168,85,247,.25)}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:14px;
-}
-.item{
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--line);
-  border-radius:14px;overflow:hidden;
-}
-.item img{width:100%;height:120px;object-fit:cover}
-.meta{padding:10px}
-.bar{
-  height:6px;border-radius:6px;
-  background:#2a2140;margin-top:8px;
-}
-.fill{height:100%;background:linear-gradient(90deg,#22c55e,#a855f7)}
-footer{
-  text-align:center;color:var(--muted);
-  margin:40px 0 10px;font-size:13px;
-}
+    nav{
+      display:flex; gap:10px; flex-wrap:wrap;
+      justify-content:center;
+      flex:1;
+    }
+    nav a{
+      color:rgba(255,255,255,.88);
+      text-decoration:none;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight:600;
+      font-size:13px;
+      transition: transform .12s ease, background .12s ease;
+    }
+    nav a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+    nav a.active{
+      background: linear-gradient(135deg, rgba(168,85,247,.32), rgba(34,197,94,.12));
+      border-color: rgba(168,85,247,.35);
+      box-shadow: 0 0 0 3px rgba(168,85,247,.12) inset;
+    }
 
-/* MOBILE */
-@media(max-width:900px){
-  .bannerGrid{grid-template-columns:1fr}
-}
-</style>
+    .right{
+      display:flex; gap:10px; align-items:center;
+      min-width: 220px;
+      justify-content:flex-end;
+    }
+    .btnGhost{
+      font-size:12px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.88);
+      text-decoration:none;
+      font-weight:600;
+    }
+    .btnLogin{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(251,191,36,.35);
+      background: linear-gradient(135deg, rgba(251,191,36,.18), rgba(255,255,255,.04));
+      color: var(--text);
+      text-decoration:none;
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.4px;
+    }
+
+    /* --- layout --- */
+    main{
+      max-width:1200px;
+      margin:0 auto;
+      padding:18px 18px 46px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      box-shadow: 0 18px 44px rgba(0,0,0,.25);
+    }
+
+    .infoBar{
+      display:flex; align-items:center; gap:10px;
+      padding:14px 16px;
+      margin-top:12px;
+      margin-bottom:14px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 3px rgba(34,197,94,.12);
+    }
+    .infoBar b{color: rgba(255,255,255,.92)}
+    .infoBar span{color: var(--muted)}
+
+    /* --- hero banner + info --- */
+    .hero{ padding:18px; }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap:16px;
+    }
+
+    .bannerBox{
+      position:relative;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(168,85,247,.10), rgba(255,255,255,.04));
+      overflow:hidden;
+      min-height: 250px;
+    }
+    .bannerBox::before{
+      content:"";
+      position:absolute; inset:-80px;
+      background:
+        radial-gradient(420px 260px at 18% 25%, rgba(168,85,247,.25), transparent 65%),
+        radial-gradient(360px 260px at 70% 40%, rgba(34,197,94,.12), transparent 62%),
+        radial-gradient(420px 260px at 50% 85%, rgba(251,191,36,.10), transparent 70%);
+      filter: blur(10px);
+      transform: rotate(6deg);
+      opacity:.9;
+    }
+    .bannerInner{
+      position:relative;
+      height:100%;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .bannerTag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width:max-content;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(168,85,247,.35);
+      background: rgba(168,85,247,.18);
+      font-size:12px;
+      font-weight:800;
+    }
+    .bannerHint{
+      margin-top:auto;
+      color: rgba(255,255,255,.78);
+      font-size:12px;
+      max-width: 520px;
+    }
+
+    /* banner image holder (1280x1280) */
+    .bannerImg{
+      width:100%;
+      height:100%;
+      position:absolute; inset:0;
+      display:none; /* set to block if you use an image */
+    }
+    .bannerImg img{
+      width:100%; height:100%;
+      object-fit:cover; /* keeps it nice even if container ratio changes */
+      object-position:center;
+    }
+
+    .infoBox{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      padding:16px 16px 14px;
+    }
+    .infoBox h2{ margin:0 0 6px; font-size:18px; letter-spacing:.2px; }
+    .infoBox p{ margin:0 0 10px; color: var(--muted); font-size:13px; line-height:1.5; }
+    .infoList{ margin:10px 0 12px; padding-left:18px; }
+    .infoList li{ margin:6px 0; color: rgba(255,255,255,.86); }
+    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px }
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.9);
+      text-decoration:none;
+      font-weight:800;
+      font-size:13px;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .cta:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08) }
+    .cta.wa{ border-color: rgba(168,85,247,.35); background: rgba(168,85,247,.18); }
+    .cta.info{ border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.14); color:#111; }
+    .cta.chat{ border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.07); }
+
+    /* --- picks --- */
+    .sectionHead{
+      margin-top:18px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .sectionHead h3{ margin:0; font-size:16px; letter-spacing:.2px; }
+    .sectionHead small{ color: var(--muted); font-weight:600; }
+
+    .tabs{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .tab{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.9);
+      font-weight:800;
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .tab.on{
+      border-color: rgba(34,197,94,.35);
+      box-shadow: 0 0 0 3px rgba(34,197,94,.10) inset;
+    }
+
+    .grid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap:14px;
+    }
+    .item{
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      min-height: 210px;
+      display:flex;
+      flex-direction:column;
+    }
+    .thumb{ height:120px; position:relative; background: rgba(255,255,255,.06); }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .badge{
+      position:absolute; top:10px; left:10px;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.12);
+    }
+    .badge.new{ border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.15) }
+    .badge.hot{ border-color: rgba(251,191,36,.40); background: rgba(251,191,36,.16) }
+
+    .meta{
+      padding:12px 12px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      flex:1;
+    }
+    .name{ font-weight:900; font-size:13px; letter-spacing:.2px }
+    .sub{ color: var(--muted); font-size:12px; font-weight:650 }
+    .bar{
+      height:7px;
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      overflow:hidden;
+      margin-top:auto;
+    }
+    .fill{
+      height:100%;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(34,197,94,.95), rgba(168,85,247,.95));
+    }
+    .pct{ font-size:12px; font-weight:900; color: rgba(255,255,255,.88) }
+
+    footer{
+      max-width:1200px;
+      margin:18px auto 0;
+      padding:0 18px;
+      display:flex;
+      justify-content:space-between;
+      color: var(--muted);
+      font-size:12px;
+    }
+
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .brand{min-width:unset}
+      .right{min-width:unset}
+    }
+    @media (max-width: 820px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      nav{ justify-content:flex-start; }
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+      .topbar{padding:10px 12px}
+      .navrow{padding:12px 12px 14px}
+      main{padding:16px 12px 40px}
+    }
+  </style>
 </head>
 
 <body>
+  <div class="sky"></div>
 
-<header>
-  <div class="hwrap">
-    <div class="logo"></div>
-    <div class="brand">
-      <b>PORTAL UNGU</b>
-      <small>Theme Natal • Update Harian</small>
-    </div>
-    <nav>
-      <a class="active">Live Update</a>
-      <a>Prediksi</a>
-      <a>Info</a>
-      <a>Live Chat</a>
-    </nav>
-    <a class="login">LOGIN</a>
-  </div>
-</header>
-
-<main>
-
-  <div class="card infobar">
-    <span class="dot"></span>
-    <b>Info:</b> Tulis pengumuman kamu di sini (update, event, atau berita).
-  </div>
-
-  <!-- BANNER -->
-  <section class="card">
-    <div class="bannerGrid">
-      <div class="bannerMedia">
-        <!-- GANTI LINK GAMBAR 1280x1280 -->
-        <img src="https://images.unsplash.com/photo-1608889175123-8ee8c7b77c57?q=80&w=1280" alt="Banner Natal">
+  <header>
+    <div class="topbar">
+      <div class="pills">
+        <span class="pill">Portal Hiburan & Update</span>
+        <span class="pill">Update 24 Jam</span>
+        <span class="pill">Live Chat</span>
       </div>
+      <div class="pills">
+        <span class="pill">FB</span>
+        <span class="pill">IG</span>
+      </div>
+    </div>
 
-      <div class="bannerInfo">
-        <span class="tag">🎄 Update Hari Ini</span>
-        <h2>Bocoran Update Hari Ini</h2>
-        <p class="muted">
-          Format ringkas & mudah dibaca. Cocok untuk info harian,
-          jam main, dan catatan penting.
-        </p>
-        <ul>
-          <li>Update terbaru (manual / harian)</li>
-          <li>Rekomendasi jam main & catatan</li>
-          <li>Info promo / kabar penting</li>
-        </ul>
-        <div class="cta">
-          <a class="wa">Chat WA Update</a>
-          <a class="bonus">Saldo Gratis</a>
-          <a class="up">Upgrade Winrate</a>
+    <div class="navrow">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brandTxt">
+          <b>PORTAL UNGU</b>
+          <small>Theme Natal • Update Harian</small>
         </div>
       </div>
+
+      <nav>
+        <a class="active" href="#live">Live Update</a>
+        <a href="#prediksi">Prediksi</a>
+        <a href="#info">Info</a>
+        <a href="#chat">Live Chat</a>
+      </nav>
+
+      <div class="right">
+        <a class="btnGhost" href="#live">Update 24 Jam</a>
+        <a class="btnLogin" href="#">LOGIN</a>
+      </div>
     </div>
-  </section>
+  </header>
 
-  <!-- LIST -->
-  <div class="sectionTitle">
-    <h3>Rekomendasi Populer</h3>
-    <small class="muted">Update manual • pilih kategori</small>
-  </div>
-
-  <div class="tabs">
-    <span class="on">ALL</span><span>Brand 1</span><span>Brand 2</span>
-    <span>Brand 3</span><span>Brand 4</span>
-  </div>
-
-  <div class="grid">
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420">
-      <div class="meta">Item 1<div class="bar"><div class="fill" style="width:97%"></div></div></div>
+  <main>
+    <div class="card infoBar">
+      <span class="dot"></span>
+      <b>Info:</b>
+      <span>Tulis pengumuman kamu di sini (update, event, atau berita).</span>
     </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f">
-      <div class="meta">Item 2<div class="bar"><div class="fill" style="width:84%"></div></div></div>
+
+    <!-- Banner + Info (SEJAJAR kiri/kanan) -->
+    <section class="card hero" id="live">
+      <div class="heroGrid">
+
+        <!-- KIRI: BANNER (1280x1280 OK) -->
+        <div class="bannerBox">
+          <!--
+            CARA PAKAI BANNER GAMBAR:
+            1) Upload banner kamu (1280x1280) ke hosting / GitHub repo.
+            2) Isi linknya di src.
+            3) Ubah: display:none -> display:block di .bannerImg (atau hapus inline style di bawah).
+          -->
+          <div class="bannerImg" style="display:none">
+            <img src="LINK_BANNER_1280x1280.png" alt="Banner Natal">
+          </div>
+
+          <div class="bannerInner">
+            <span class="bannerTag">Banner Natal</span>
+            <div class="bannerHint">
+              Ganti banner di bagian ini. Ukuran 1280x1280 aman. Jika pakai gambar, aktifkan .bannerImg.
+            </div>
+          </div>
+        </div>
+
+        <!-- KANAN: INFO + TOMBOL -->
+        <div class="infoBox">
+          <h2>Bocoran Update Hari Ini</h2>
+          <p>
+            Format ini sengaja dibuat ringkas dan mudah dibaca.
+            Kamu bisa edit teks, tombol, dan link sesuai kebutuhan.
+          </p>
+
+          <ul class="infoList">
+            <li>Update terbaru (manual / harian)</li>
+            <li>Rekomendasi jam &amp; catatan</li>
+            <li>Info promo / kabar penting</li>
+          </ul>
+
+          <div class="ctaRow">
+            <a class="cta wa" href="#" target="_blank" rel="noopener">Chat WA Update</a>
+            <a class="cta info" href="#info">Lihat Info</a>
+            <a class="cta chat" href="#chat">Live Chat</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Rekomendasi -->
+    <div class="sectionHead">
+      <h3>Rekomendasi Populer</h3>
+      <small>Update manual • pilih kategori di bawah</small>
     </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae">
-      <div class="meta">Item 3<div class="bar"><div class="fill" style="width:90%"></div></div></div>
+
+    <div class="tabs">
+      <span class="tab on" data-filter="all">ALL</span>
+      <span class="tab" data-filter="brand1">Brand 1</span>
+      <span class="tab" data-filter="brand2">Brand 2</span>
+      <span class="tab" data-filter="brand3">Brand 3</span>
+      <span class="tab" data-filter="brand4">Brand 4</span>
+      <span class="tab" data-filter="brand5">Brand 5</span>
+      <span class="tab" data-filter="brand6">Brand 6</span>
     </div>
-  </div>
 
-</main>
+    <section class="grid" id="picks">
+      <article class="item" data-cat="brand1">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80" alt="Item 1">
+          <span class="badge new">NEW</span>
+        </div>
+        <div class="meta">
+          <div class="name">Item 1</div>
+          <div class="sub">Kategori: Brand 1</div>
+          <div class="bar"><div class="fill" style="width:97%"></div></div>
+          <div class="pct">97%</div>
+        </div>
+      </article>
 
-<footer>
-  © <span id="y"></span> Portal Ungu • Built on GitHub Pages
-</footer>
+      <article class="item" data-cat="brand2">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80" alt="Item 2">
+          <span class="badge hot">HOT</span>
+        </div>
+        <div class="meta">
+          <div class="name">Item 2</div>
+          <div class="sub">Kategori: Brand 2</div>
+          <div class="bar"><div class="fill" style="width:84%"></div></div>
+          <div class="pct">84%</div>
+        </div>
+      </article>
 
-<script>
-document.getElementById("y").textContent=new Date().getFullYear();
-</script>
+      <article class="item" data-cat="brand1">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?auto=format&fit=crop&w=900&q=80" alt="Item 3">
+          <span class="badge hot">HOT</span>
+        </div>
+        <div class="meta">
+          <div class="name">Item 3</div>
+          <div class="sub">Kategori: Brand 1</div>
+          <div class="bar"><div class="fill" style="width:85%"></div></div>
+          <div class="pct">85%</div>
+        </div>
+      </article>
 
+      <article class="item" data-cat="brand3">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=80" alt="Item 4">
+          <span class="badge hot">HOT</span>
+        </div>
+        <div class="meta">
+          <div class="name">Item 4</div>
+          <div class="sub">Kategori: Brand 3</div>
+          <div class="bar"><div class="fill" style="width:90%"></div></div>
+          <div class="pct">90%</div>
+        </div>
+      </article>
+
+      <article class="item" data-cat="brand4">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Item 5">
+          <span class="badge hot">HOT</span>
+        </div>
+        <div class="meta">
+          <div class="name">Item 5</div>
+          <div class="sub">Kategori: Brand 4</div>
+          <div class="bar"><div class="fill" style="width:81%"></div></div>
+          <div class="pct">81%</div>
+        </div>
+      </article>
+
+      <article class="item" data-cat="brand2">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80" alt="Item 6">
+          <span class="badge hot">HOT</span>
+        </div>
+        <div class="meta">
+          <div class="name">Item 6</div>
+          <div class="sub">Kategori: Brand 2</div>
+          <div class="bar"><div class="fill" style="width:92%"></div></div>
+          <div class="pct">92%</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="card hero" id="prediksi" style="margin-top:16px; padding:16px;">
+      <h3 style="margin:0 0 6px;">Prediksi</h3>
+      <p style="margin:0; color:var(--muted); font-size:13px;">Placeholder section.</p>
+    </section>
+
+    <section class="card hero" id="info" style="margin-top:16px; padding:16px;">
+      <h3 style="margin:0 0 6px;">Info</h3>
+      <p style="margin:0; color:var(--muted); font-size:13px;">Placeholder section.</p>
+    </section>
+
+    <section class="card hero" id="chat" style="margin-top:16px; padding:16px;">
+      <h3 style="margin:0 0 6px;">Live Chat</h3>
+      <p style="margin:0; color:var(--muted); font-size:13px;">Placeholder section.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>© <span id="y"></span> Portal Ungu</div>
+    <div>Built on GitHub Pages</div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const items = Array.from(document.querySelectorAll(".item"));
+
+    tabs.forEach(t => t.addEventListener("click", () => {
+      tabs.forEach(x => x.classList.remove("on"));
+      t.classList.add("on");
+      const f = t.dataset.filter;
+
+      items.forEach(it => {
+        const ok = (f === "all") || (it.dataset.cat === f);
+        it.style.display = ok ? "" : "none";
+      });
+    }));
+  </script>
 </body>
 </html>
